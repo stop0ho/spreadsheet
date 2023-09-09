@@ -21,7 +21,13 @@ function drawSheet() {
           td.innerText = i;
           td.id = i;
         } else {
-          td.innerHTML = `<input class='sheet-input' type='text' />`;
+          const input = document.createElement('input');
+          input.class = 'sheet-input';
+          input.id = `${String.fromCharCode(j + 64)}${i}`;
+          input.setAttribute('type', 'text');
+          input.addEventListener('focus', focus);
+          input.addEventListener('blur', blur);
+          td.appendChild(input);
           td.id = `${String.fromCharCode(j + 64)}${i}`;
           td.className = 'sheet-content';
         }
@@ -35,3 +41,21 @@ function drawSheet() {
 }
 
 drawSheet();
+
+function focus(e) {
+  let select = document.getElementById('selected');
+  let targetID = e.target.parentElement.id;
+  select.innerText = targetID;
+  let row = document.getElementById(targetID[1]);
+  let col = document.getElementById(targetID[0]);
+  row.className = 'selected';
+  col.className = 'selected';
+}
+
+function blur(e) {
+  const targetID = e.target.parentElement.id;
+  const row = document.getElementById(targetID[1]);
+  const col = document.getElementById(targetID[0]);
+  row.className = 'unselected';
+  col.className = 'unselected';
+}

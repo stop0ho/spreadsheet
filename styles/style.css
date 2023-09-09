@@ -11,7 +11,7 @@ tr {
 }
 
 input {
-  width: 90%;
+  width: 95%;
   height: 30px;
   border: none;
 }
@@ -19,4 +19,12 @@ input {
 input:focus {
   outline: none;
   background-color: #c9d9e9;
+}
+
+.selected {
+  background-color: #c9d9e9;
+}
+
+.unselected {
+  background-color: #eaeaed;
 }
