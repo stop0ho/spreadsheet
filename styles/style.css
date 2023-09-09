@@ -1,0 +1,22 @@
+tr:first-child,
+td:first-child {
+  background-color: #eaeaed;
+}
+table {
+  border: #e3e4e6;
+}
+
+tr {
+  height: 35px;
+}
+
+input {
+  width: 90%;
+  height: 30px;
+  border: none;
+}
+
+input:focus {
+  outline: none;
+  background-color: #c9d9e9;
+}
