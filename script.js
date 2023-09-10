@@ -76,7 +76,7 @@ function s2ab(s) {
 
 var excelHandler = {
   getExcelFileName: function () {
-    return 'table-test.xlsx';
+    return 'table.xlsx';
   },
   getSheetName: function () {
     return 'Table Test Sheet';
