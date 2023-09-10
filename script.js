@@ -22,12 +22,16 @@ function drawSheet() {
           td.innerText = i;
           td.id = i;
         } else {
+          const div = document.createElement('div');
+          div.style.display = 'none';
           const input = document.createElement('input');
           input.class = 'sheet-input';
           input.id = `${String.fromCharCode(j + 64)}${i}`;
           input.setAttribute('type', 'text');
           input.addEventListener('focus', focus);
           input.addEventListener('blur', blur);
+          input.addEventListener('input', inputValue);
+          td.appendChild(div);
           td.appendChild(input);
           td.id = `${String.fromCharCode(j + 64)}${i}`;
           td.className = 'sheet-content';
@@ -43,10 +47,12 @@ function drawSheet() {
 
 drawSheet();
 
+function inputValue(e) {
+  const content = e.target.parentElement.firstChild;
+  content.innerText = e.target.value;
+}
 function focus(e) {
-  let select = document.getElementById('selected');
-  let targetID = e.target.parentElement.id;
-  select.innerText = targetID;
+  let targetID = e.target.id;
   let row = document.getElementById(targetID[1]);
   let col = document.getElementById(targetID[0]);
   row.style.backgroundColor = '#c9d9e9';
@@ -54,7 +60,7 @@ function focus(e) {
 }
 
 function blur(e) {
-  const targetID = e.target.parentElement.id;
+  const targetID = e.target.id;
   const row = document.getElementById(targetID[1]);
   const col = document.getElementById(targetID[0]);
   row.style.backgroundColor = '#eaeaed';
