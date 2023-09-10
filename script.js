@@ -5,6 +5,7 @@ function drawSheet() {
   const body = document.querySelector('body');
   const table = document.createElement('table');
   table.setAttribute('border', 1);
+  table.id = 'tableData';
 
   // 맨 윗줄 만들기
   for (let i = 0; i < row; i++) {
@@ -58,4 +59,39 @@ function blur(e) {
   const col = document.getElementById(targetID[0]);
   row.style.backgroundColor = '#eaeaed';
   col.style.backgroundColor = '#eaeaed';
+}
+
+function s2ab(s) {
+  var buf = new ArrayBuffer(s.length); //convert s to arrayBuffer
+  var view = new Uint8Array(buf); //create uint8array as viewer
+  for (var i = 0; i < s.length; i++) view[i] = s.charCodeAt(i) & 0xff; //convert to octet
+  return buf;
+}
+
+var excelHandler = {
+  getExcelFileName: function () {
+    return 'table-test.xlsx';
+  },
+  getSheetName: function () {
+    return 'Table Test Sheet';
+  },
+  getExcelData: function () {
+    return document.getElementById('tableData');
+  },
+  getWorksheet: function () {
+    return XLSX.utils.table_to_sheet(this.getExcelData());
+  },
+};
+
+const button = document.getElementById('exportBtn');
+button.addEventListener('click', exportExcel);
+function exportExcel(e) {
+  let wb = XLSX.utils.book_new();
+  let newWorksheet = excelHandler.getWorksheet();
+  XLSX.utils.book_append_sheet(wb, newWorksheet, excelHandler.getSheetName());
+  let wbout = XLSX.write(wb, { bookType: 'xlsx', type: 'binary' });
+  saveAs(
+    new Blob([s2ab(wbout)], { type: 'application/octet-stream' }),
+    excelHandler.getExcelFileName()
+  );
 }
