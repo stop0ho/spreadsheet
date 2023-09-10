@@ -48,14 +48,14 @@ function focus(e) {
   select.innerText = targetID;
   let row = document.getElementById(targetID[1]);
   let col = document.getElementById(targetID[0]);
-  row.className = 'selected';
-  col.className = 'selected';
+  row.style.backgroundColor = '#c9d9e9';
+  col.style.backgroundColor = '#c9d9e9';
 }
 
 function blur(e) {
   const targetID = e.target.parentElement.id;
   const row = document.getElementById(targetID[1]);
   const col = document.getElementById(targetID[0]);
-  row.className = 'unselected';
-  col.className = 'unselected';
+  row.style.backgroundColor = '#eaeaed';
+  col.style.backgroundColor = '#eaeaed';
 }

@@ -1,12 +1,19 @@
 tr:first-child,
 td:first-child {
   background-color: #eaeaed;
+  width: 50px;
 }
+
+tr:first-child .selected,
+td:first-child .selected {
+  background-color: #c9d9e9;
+}
+
 table {
   border: #e3e4e6;
 }
 
-tr {
+td {
   height: 35px;
 }
 
@@ -18,10 +25,6 @@ input {
 
 input:focus {
   outline: none;
-  background-color: #c9d9e9;
-}
-
-.selected {
   background-color: #c9d9e9;
 }
 
